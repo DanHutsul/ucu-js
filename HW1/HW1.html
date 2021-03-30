@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>HW1</h2>
+
+<p id="tuckInTest"></p>
+<p id="minMaxTest"></p>
+<p id="canNestTest"></p>
+
+<script>
+function tuckIn(left, right) {
+	var center = Math.floor(left.length/2);
+	var newArr = [];
+	var i = 0;
+	while (i < center) { // Fill first half
+		newArr.push(left[i]);
+		i++;
+	}
+
+	var j = 0;
+	while (j < right.length) { // Insertion
+		newArr.push(right[j]);
+		j++;
+	}
+
+	while (i < left.length) { // Fill second half
+		newArr.push(left[i]);
+		i++;
+	}
+
+  	return newArr;
+}
+
+function minMax(arr) {
+	var min = 9007199254740992;
+	var max = -2147483648;
+
+	var i;
+	for (i = 0; i < arr.length; i++) {
+	 	if (arr[i] > max) {
+	 		max = arr[i];
+	 	}
+	 	if (arr[i] < min) {
+	 		min = arr[i];
+	 	}
+	}
+	return [min, max];
+}
+
+function canNest(arr1, arr2) {
+	if (minMax(arr1)[0] > minMax(arr2)[0]) {
+		if (minMax(arr1)[1] < minMax(arr2)[1]) {
+			return true;
+		}
+	}
+	return false;
+}
+
+//document.getElementById("tuckInTest").innerHTML = tuckIn([1, 10], [2, 3, 4, 5, 6, 7, 8, 9]);
+//document.getElementById("tuckInTest").innerHTML = tuckIn([15,150], [45, 75, 35]);
+document.getElementById("tuckInTest").innerHTML = tuckIn([[1, 2], [5, 6]], [[3, 4]]);
+
+
+//document.getElementById("minMaxTest").innerHTML = minMax([1, 2, 3, 4, 5]);
+//document.getElementById("minMaxTest").innerHTML = minMax([2334454, 5]);
+document.getElementById("minMaxTest").innerHTML = minMax([1]);
+
+
+//document.getElementById("canNestTest").innerHTML = canNest([1, 2, 3, 4], [0, 6]);
+//document.getElementById("canNestTest").innerHTML = canNest([3, 1], [4, 0]);
+//document.getElementById("canNestTest").innerHTML = canNest([9, 9, 8], [8, 9]);
+document.getElementById("canNestTest").innerHTML = canNest([1, 2, 3, 4], [2, 3])
+</script>
+
+</body>
+</html> 
